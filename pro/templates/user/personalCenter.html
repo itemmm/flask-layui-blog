@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% block content %}
+    <div class="layui-tab" style="user-select: none;">
+      <ul class="layui-tab-title">
+        <li>网站设置</li>
+        <li>用户管理</li>
+        <li class="layui-this">文章管理</li>
+        <li>评论管理</li>
+        <li>回复管理</li>
+      </ul>
+      <div class="layui-tab-content">
+        <div class="layui-tab-item">
+            暂未开通！！！
+        </div>
+        <div class="layui-tab-item">
+            暂未开通！！！
+        </div>
+        <div class="layui-tab-item layui-show">
+            {% for data in content.data %}
+                <div class="layui-collapse">
+                  <div class="layui-colla-item">
+                    <h2 class="layui-colla-title">{{ data.categoryName }}</h2>
+                    <div class="layui-colla-content">
+                        {% for content in data.contentList %}
+                            <div class="layui-card">
+                              <div class="layui-card-header">{{ content.contentName }}</div>
+                              <div class="layui-card-body">
+                                  <span class="layui-icon">&#xe705;</span>
+                                  <span class="layui-icon" onclick="window.open('/admin/updateContent?contentId={{ content.contentId }}')">&#xe642;</span>
+                                  <span class="layui-icon">&#xe641;</span>
+                                  <span class="layui-icon">&#xe640;</span>
+                                  <span class="layui-icon">&#xe640;</span>
+                                  <span class="layui-icon">&#xe620;</span>
+                              </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                  </div>
+                </div><br>
+            {% endfor %}
+        </div>
+        <div class="layui-tab-item">
+            暂未开通！！！
+        </div>
+        <div class="layui-tab-item">
+            暂未开通！！！
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+</body>
+</html>

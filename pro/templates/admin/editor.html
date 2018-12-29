@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}盛唐{% endblock %}</title>
+    {% block css %}<link rel="stylesheet" href="../../static/editormd/css/editormd.css" />{% endblock %}
+</head>
+<body>
+
+
+{% block content %}
+<div class="x-body">
+    <div class="layui-form layui-form-pane">
+
+        <div class="layui-form-item">
+            <label for="schoolName" class="layui-form-label">
+                <span class="x-red">*</span>标题
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="title" id="title" required="" lay-verify="required" autocomplete="off" class="layui-input" />
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="schoolName" class="layui-form-label">
+                <span class="x-red">*</span>描述
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="des" id="des" required="" lay-verify="required" autocomplete="off" class="layui-input" />
+            </div>
+        </div>
+
+        <div id="editormd">
+            <textarea style="display:none;" name="editormd-markdown-doc" id="md_text"></textarea>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="../../static/jQuery-3.3.1.js"></script>
+<script src="../../static/editormd/editormd.js"></script>
+<script src="../../static/admin/editor.js"></script>
+{% endblock %}
+</body>
+</html>

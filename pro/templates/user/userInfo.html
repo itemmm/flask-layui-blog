@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ content.nickname }}的个人中心</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" />
+</head>
+<body>
+
+<img style="width: 100px;height: 100px;background-color: #00c4ff;margin-left: 40px;margin-top: 20px" class="layui-inline" src="{{ content.avatar }}" />
+<div class="layui-inline" style="font-size: 20px;margin-left: 90px;">昵称：{{ content.nickname }}</div><br><br><br>
+
+<label style="font-size: 15px;margin-left: 20px;">个性签名：</label>
+<div class="layui-form" style="padding: 20px;">
+    <input type="text" name="motto" id="motto" required="" lay-verify="required" autocomplete="off" class="layui-input" /><br>
+    <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="save" style="margin-left: 190px;">保存</button>
+</div>
+
+</body>
+</html>

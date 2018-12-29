@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+{% block content %}<div id="content-list"></div>{% endblock %}
+
+
+{% block js %}<script src="../../static/pro/index.js"></script>{% endblock %}
+</body>
+</html>

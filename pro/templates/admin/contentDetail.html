@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ content.title }}{% endblock %}</title>
+    {% block css %}<link rel="stylesheet" href="../../static/editormd/css/editormd.preview.css" />{% endblock %}
+</head>
+<body>
+
+{% block content %}
+    <div>
+        <h1 style="text-align: center">{{ content.title }}</h1>
+    </div>
+    <div id="show-editormd" class="markdown-body editormd-html-preview" style="background-color: #F0FFF0">
+        <textarea style="display:none;">{{ content.md_text }}</textarea>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+<script src="../../static/jQuery-3.3.1.js"></script>
+<script src="../../static/editormd/lib/marked.min.js"></script>
+<script src="../../static/editormd/lib/prettify.min.js"></script>
+<script src="../../static/editormd/lib/raphael.min.js"></script>
+<script src="../../static/editormd/lib/underscore.min.js"></script>
+<script src="../../static/editormd/lib/sequence-diagram.min.js"></script>
+<script src="../../static/editormd/lib/flowchart.min.js"></script>
+<script src="../../static/editormd/lib/jquery.flowchart.min.js"></script>
+<script src="../../static/editormd/editormd.js"></script>
+<script>
+    $(document).ready(function(){
+        var showEditormd;
+        showEditormd = editormd.markdownToHTML("show-editormd", {
+                            htmlDecode      : "style,script,iframe",
+                            emoji           : true,
+                            taskList        : true,
+                            tex             : true,  // 默认不解析
+                            flowChart       : true,  // 默认不解析
+                            sequenceDiagram : true,
+                        });
+    });
+
+</script>
+{% endblock %}
+</body>
+</html>
