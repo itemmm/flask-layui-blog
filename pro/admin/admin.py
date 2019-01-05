@@ -34,7 +34,7 @@ def editor():
 def saveContent():
     msg = {}
     loginName = session.get("login_name")
-    user = utils.getUser(loginName=loginName)
+    user = utils.getUserByLoginName(loginName=loginName)
     params = request.form
     title = params.get("title")
     des = params.get("des")
