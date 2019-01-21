@@ -96,7 +96,7 @@ def personalCenter():
             for contentInfo in contentList:
                 contentId = contentInfo.id
                 contentName = contentInfo.title
-                appendInfo["contentList"].append({"contentId": contentId, "contentName": contentName})
+                appendInfo["contentList"].insert(0,{"contentId": contentId, "contentName": contentName})
             msg["data"].append(appendInfo)
         return render_template("user/personalCenter.html",content=msg)
     elif request.method == "POST":
