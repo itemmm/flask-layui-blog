@@ -41,8 +41,9 @@ def saveContent():
     mdText = params.get("md_text")
     htmlText = params.get("html_text")
     nowTime = time.strftime("%Y-%m-%d %H:%M:%S")
+    categoryId = request.args.get("categoryId")
     if title and des and mdText and htmlText:
-        newContent = models.StContent(title=title,des=des,author=user.id,md_text=mdText,html_text=htmlText,create_time=nowTime,update_time=nowTime)
+        newContent = models.StContent(title=title,des=des,author=user.id,category_id=categoryId,md_text=mdText,html_text=htmlText,create_time=nowTime,update_time=nowTime)
         models.db.session.add(newContent)
         models.db.session.commit()
         msg["code"] = 0
