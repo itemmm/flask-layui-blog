@@ -1,18 +1,19 @@
+{% extends "base.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ content.title }}</title>
-    <link rel="stylesheet" href="../../static/editormd/css/editormd.css" />
     <link rel="stylesheet" href="../../static/layui/css/layui.css" />
+    {% block css %}<link rel="stylesheet" href="../../static/editormd/css/editormd.css" />{% endblock %}
 </head>
 <body>
-
+{% block content %}
 <div class="x-body">
     <div class="layui-form layui-form-pane" style="padding: 20px 40px;">
         <input type="hidden" id="contentId" name="contentId" value="{{ content.id }}" />
         <div class="layui-form-item">
-            <label for="schoolName" class="layui-form-label">
+            <label for="title" class="layui-form-label">
                 <span class="x-red">*</span>标题
             </label>
             <div class="layui-input-block">
@@ -21,7 +22,7 @@
         </div>
 
         <div class="layui-form-item">
-            <label for="schoolName" class="layui-form-label">
+            <label for="des" class="layui-form-label">
                 <span class="x-red">*</span>描述
             </label>
             <div class="layui-input-block">
@@ -32,14 +33,14 @@
         <div id="editormd">
             <textarea style="display:none;" name="editormd-markdown-doc">{{ content.md_text }}</textarea>
         </div>
-        <div class="layui-form-item" style="width: 80% ;margin: 0 auto">
-            <button class="layui-btn" lay-submit="" lay-filter="save">保存</button>
-        </div>
     </div>
 </div>
+{% endblock %}
+{% block js %}
 <script src="../../static/jQuery-3.3.1.js"></script>
 <script src="../../static/editormd/editormd.js"></script>
 <script src="../../static/layui/layui.js"></script>
 <script src="../../static/admin/updateContent.js"></script>
+{% endblock %}
 </body>
 </html>
