@@ -20,7 +20,8 @@ $(function() {
                     let des = $("#des").val();
                     let md_text = editor.getMarkdown();
                     let html_text = editor.getPreviewedHTML();
-                    let params = {"title":title,"des":des,"md_text":md_text,"html_text":html_text};
+                    let categoryId = $("#categoryId").val();
+                    let params = {"title":title,"des":des,"md_text":md_text,"html_text":html_text,"categoryId":categoryId};
                     $.ajax({
                         type: "POST",
                         url: "/admin/saveContent",
@@ -30,7 +31,7 @@ $(function() {
                                     layer.alert(res.msg, {icon: 6}, function () {
                                         let index = layer.alert();
                                         layer.close(index);
-                                        window.close();
+                                        window.location.href="/index";
                                     })
                             }else{
                                 layer.alert(res.msg, {icon: 5});
