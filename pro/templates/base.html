@@ -7,28 +7,40 @@
     {% block css %}{% endblock %}
 </head>
 <body bgcolor="#F0FFF0">
-<div style="position:fixed; width: 100%;z-index: 99999;margin-right: 5px;">
-    <ul class="layui-nav">
-        <li class="layui-nav-item">
-            <a href="/index">首页</a>
-        </li>
-        <li class="layui-nav-item">
-            <a>Write</a>
-            <dl class="layui-nav-child" id="category"></dl>
-        </li>
-        <li class="layui-nav-item layui-layout-right" style="margin-right: 20px;">
-            <a id="nickname"></a>
-            <dl class="layui-nav-child">
-                <dd><a style="text-align: center;" href="/user/personalCenter">个人中心</a></dd>
-                <dd><a style="text-align: center;" id="updatePwd">修改信息</a></dd>
-                <dd><a href="/user/logout" style="text-align: center" id="logout">注销</a></dd>
-            </dl>
-        </li>
-    </ul>
+<!--<div style="position:fixed; width: 100%;z-index: 99999;margin-right: 5px;">-->
+    <!--<ul class="layui-nav">-->
+        <!--<li class="layui-nav-item">-->
+            <!--<a href="/index">首页</a>-->
+        <!--</li>-->
+        <!--<li class="layui-nav-item">-->
+            <!--<a>Write</a>-->
+            <!--<dl class="layui-nav-child" id="category"></dl>-->
+        <!--</li>-->
+        <!--<li class="layui-nav-item layui-layout-right" style="margin-right: 20px;">-->
+            <!--<a id="nickname"></a>-->
+            <!--<dl class="layui-nav-child">-->
+                <!--<dd><a style="text-align: center;" href="/user/personalCenter">个人中心</a></dd>-->
+                <!--<dd><a style="text-align: center;" id="updatePwd">修改信息</a></dd>-->
+                <!--<dd><a href="/user/logout" style="text-align: center" id="logout">注销</a></dd>-->
+            <!--</dl>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</div>-->
+
+<div style="position:fixed;padding: 2% 2%">
+    <div>
+       <a id="nickname"></a><br>
+       <a href="/user/logout" style="text-align: center" id="logout">注销</a>
+    </div><br>
+    <div><a href="/index">首页</a></div>
+    <div>
+        <a style="text-align: center;" href="/user/personalCenter">个人中心</a>
+    </div><br>
+    <div id="category"></div>
+
 </div>
 
-
-<div style="padding: 80px 20%">
+<div style="padding: 20px 20%">
 {% block content %}
 {% endblock %}
 </div>
@@ -48,7 +60,7 @@
             success: function(res){
                 let category = $("#category");
                 for(i=0;i<res.data.length;i++){
-                    html = '<dd><a style="text-align: center;" href="/admin/editor?categoryId='+res.data[i].categoryId+'">'+res.data[i].categoryName+'</a></dd>';
+                    html = '<a style="text-align: center;" href="/admin/editor?categoryId='+res.data[i].categoryId+'">写'+res.data[i].categoryName+'</a><br><br>';
                     category.append(html)
                 }
             }
