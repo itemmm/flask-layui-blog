@@ -28,15 +28,17 @@
 <!--</div>-->
 
 <div style="position:fixed;padding: 2% 2%">
-    <div>
-       <a id="nickname"></a><br>
-       <a href="/user/logout" style="text-align: center" id="logout">注销</a>
+    <div style="align-items: center" id="nickname">
     </div><br>
-    <div><a href="/index">首页</a></div>
-    <div>
+    <div class="layui-card-header">
+        <a href="/user/logout" style="text-align: center" id="logout">注销</a><br>
+    </div>
+    <div class="layui-card-header">
+        <a href="/index">首页</a>
+        <a>|</a>
         <a style="text-align: center;" href="/user/personalCenter">个人中心</a>
-    </div><br>
-    <div id="category"></div>
+    </div>
+    <div class="layui-card-body" id="category"></div>
 
 </div>
 
@@ -51,7 +53,7 @@
         var $ = layui.jquery;
         var element = layui.element;
 
-        $("#nickname").append('<img src="'+localStorage.getItem("avatar")+'" class="layui-nav-img" />'+localStorage.getItem("nickname"));
+        $("#nickname").append('<img style="height: 100px;width: 100px;" src="'+localStorage.getItem("avatar")+'" class="layui-nav-img" />');
 
         $.ajax({
             type: "GET",
