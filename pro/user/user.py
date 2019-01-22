@@ -128,3 +128,33 @@ def addCategory():
         msg["msg"] = "请求成功！"
         msg["code"] = 0
         return jsonify(msg)
+
+
+@user.route("/addComment",methods=["GET","POST"],endpoint="addComment")
+@decorator.authentication
+def addComment():
+    msg = {}
+    msg["data"] = []
+    if request.method == "GET":
+        params = request.args
+        contentId = params.get("contentId")
+        content = {
+            "contentId":contentId
+        }
+        return render_template("user/addComment.html",content=content)
+    else:
+        params = request.form
+        contentId = params.get("contentId")
+        comment = params.get("comment")
+        userId = session.get("userId")
+        now = time.strftime("%Y-%m-%d %H:%M:%S")
+        if contentId and comment and userId:
+            newComment = models.StComment(user_id=userId,content_id=contentId,comment=comment,create_time=now,update_time=now)
+            models.db.session.add(newComment)
+            models.db.session.commit()
+            msg["code"] = 0
+            msg["msg"] = "保存成功！"
+        else:
+            msg["code"] = 1001
+            msg["msg"] = "参数有误！"
+        return jsonify(msg)
