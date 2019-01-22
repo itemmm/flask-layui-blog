@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css" />
+</head>
+<body>
+
+
+<div class="x-body" style="padding: 20px 40px;">
+    <div class="layui-form" style="padding: 20px 40px;">
+        <div class="layui-form layui-form-pane">
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">类别名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="categoryName" id="categoryName" lay-verify="required" placeholder="请输入类别名称" autocomplete="off" class="layui-input" />
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">类别描述</label>
+                <div class="layui-input-block">
+                    <textarea style="resize: none;" type="text" name="categoryDes" id="categoryDes" lay-verify="required" placeholder="请输入类别描述" autocomplete="off" class="layui-textarea"></textarea>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <button class="layui-btn layui-btn-primary" lay-submit="" lay-filter="save">保存</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="../../static/layui/layui.js"></script>
+<script src="../../static/user/addCategory.js"></script>
+</body>
+</html>

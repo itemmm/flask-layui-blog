@@ -24,6 +24,9 @@
             暂未开通！！！
         </div>
         <div class="layui-tab-item layui-show">
+            <div>
+                <button class="layui-btn layui-btn-primary" id="addCategory">新增分类</button>
+            </div><br>
             {% for data in content.data %}
                 <div class="layui-collapse">
                   <div class="layui-colla-item">
@@ -56,6 +59,10 @@
       </div>
     </div>
 
+{% endblock %}
+
+{% block js %}
+<script src="../../static/user/personalCenter.js"></script>
 {% endblock %}
 </body>
 </html>

@@ -2,6 +2,7 @@ from pro.user import user
 from flask import request,render_template,redirect,jsonify,session
 from pro import decorator
 from pro import models,utils
+import time
 
 
 @user.route("/login",methods=["GET","POST"])
@@ -20,6 +21,7 @@ def login():
         else:
             if user.login_name == userName and user.password == passWord:
                 session["login_name"] = user.login_name
+                session["userId"] = user.id
                 session["avatar"] = user.avatar
                 session["nickname"] = user.nickname
                 session["password"] = user.password
@@ -103,4 +105,26 @@ def personalCenter():
         params = request.form
         msg["code"] = 0
         msg["msg"] = "请求成功！"
+        return jsonify(msg)
+
+
+@user.route("/addCategory",methods=["GET","POST"],endpoint="addCategory")
+@decorator.authentication
+def addCategory():
+    if request.method == "GET":
+        return render_template("user/addCategory.html")
+    else:
+        msg = {}
+        msg["data"] = []
+        params = request.form
+        userId = session.get("userId")
+        categoryName = params.get("categoryName")
+        categoryDes = params.get("categoryDes")
+        categoryImg = params.get("categoryImg")
+        now = time.strftime("%Y-%m-%d %H:%M:%S")
+        newCategory = models.StContentCategory(category_name=categoryName,category_des=categoryDes,category_img=categoryImg,user_id=userId,create_time=now,update_time=now)
+        models.db.session.add(newCategory)
+        models.db.session.commit()
+        msg["msg"] = "请求成功！"
+        msg["code"] = 0
         return jsonify(msg)
