@@ -20,7 +20,7 @@ def editor():
         loginName = session.get("login_name")
         user = utils.getUserByLoginName(loginName=loginName)
         if category.user_id == user.id:
-            return render_template("admin/editor.html")
+            return render_template("admin/editor.html",content=category)
         else:
             return redirect("/index")
     else:
@@ -41,7 +41,7 @@ def saveContent():
     mdText = params.get("md_text")
     htmlText = params.get("html_text")
     nowTime = time.strftime("%Y-%m-%d %H:%M:%S")
-    categoryId = request.args.get("categoryId")
+    categoryId = params.get("categoryId")
     if title and des and mdText and htmlText:
         newContent = models.StContent(title=title,des=des,author=user.id,category_id=categoryId,md_text=mdText,html_text=htmlText,create_time=nowTime,update_time=nowTime)
         models.db.session.add(newContent)
