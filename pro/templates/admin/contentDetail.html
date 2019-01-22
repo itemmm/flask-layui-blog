@@ -3,17 +3,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{{ content.title }}{% endblock %}</title>
+    <title>{% block title %}{{ content.content.title }}{% endblock %}</title>
     {% block css %}<link rel="stylesheet" href="../../static/editormd/css/editormd.preview.css" />{% endblock %}
 </head>
 <body>
 
 {% block content %}
     <div>
-        <h1 style="text-align: center">{{ content.title }}</h1>
+        <h1 style="text-align: center">{{ content.content.title }}</h1>
     </div>
     <div id="show-editormd" class="markdown-body editormd-html-preview" style="background-color: #F0FFF0">
-        <textarea style="display:none;">{{ content.md_text }}</textarea>
+        <textarea style="display:none;">{{ content.content.md_text }}</textarea>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;"><legend>结束</legend></fieldset>
+    <button class="layui-btn layui-btn-primary" id="comment">留言</button>
+    <div id="commentList">
+        {% for comment in content.comment %}
+        <div style="padding: 20px 40px">
+            <div class="layui-card">
+                <div class="layui-card-header"><img style="height:40px;width:40px;" class="layui-nav-img" src="{{ comment.user.avatar }}" />{{ comment.user.nickname }}  {{ comment.comment.create_time }}</div>
+                <div class="layui-card-body">{{ comment.comment.comment|safe }}</div>
+            </div>
+
+        </div>
+        {% endfor %}
     </div>
 {% endblock %}
 
@@ -28,6 +41,7 @@
 <script src="../../static/editormd/lib/flowchart.min.js"></script>
 <script src="../../static/editormd/lib/jquery.flowchart.min.js"></script>
 <script src="../../static/editormd/editormd.js"></script>
+<script src="../../static/layui/layui.js"></script>
 <script>
     $(document).ready(function(){
         var showEditormd;
@@ -40,7 +54,20 @@
                             sequenceDiagram : true,
                         });
     });
-
+layui.use(["layer"],function(){
+    var layer = layui.layer;
+    $("#comment").click(function () {
+        layer.open({
+           type: 2,
+           title: "留言",
+            area: ["700px","480px"],
+           content: "/user/addComment?contentId={{ content.content.id }}",
+            end: function(){
+               window.location.reload();
+            }
+        });
+    });
+})
 </script>
 {% endblock %}
 </body>

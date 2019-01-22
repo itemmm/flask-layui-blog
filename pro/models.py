@@ -39,3 +39,13 @@ class StContentCategory(db.Model):
     create_time = db.Column(db.DATETIME)
     update_time = db.Column(db.DATETIME)
     delete_flag = db.Column(db.INTEGER, default=0, nullable=False)
+
+class StComment(db.Model):
+    id = db.Column(db.INTEGER, primary_key=True, autoincrement=True, nullable=False)
+    user_id = db.Column(db.INTEGER)
+    content_id = db.Column(db.INTEGER)
+    comment = db.Column(db.TEXT)
+    parent_id = db.Column(db.INTEGER,default=-1)
+    delete_flag = db.Column(db.INTEGER, default=0, nullable=False)
+    create_time = db.Column(db.DATETIME)
+    update_time = db.Column(db.DATETIME)

@@ -100,8 +100,18 @@ def contentDetail():
     msg["data"] = []
     params = request.args
     contentId = params.get("contentId")
-    content = models.db.session.query(models.StContent).filter(models.StContent.id==contentId,models.StContent.delete_flag==0).one()
-    print(content.title)
+    contentInfo = models.db.session.query(models.StContent).filter(models.StContent.id==contentId,models.StContent.delete_flag==0).one()
+    commentList = models.db.session.query(models.StComment).filter(models.StComment.content_id==contentId,models.StComment.delete_flag==0).all()
+    comments = []
+    for commentInfo in commentList:
+        userId = commentInfo.user_id
+        user = models.db.session.query(models.StUser).filter(models.StUser.id==userId).first()
+        appendInfo = {"comment":commentInfo,"user":user}
+        comments.insert(0,appendInfo)
+    content = {
+        "content":contentInfo,
+        "comment":comments
+    }
     return render_template("admin/contentDetail.html",content=content)
 
 

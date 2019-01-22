@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>留言</title>
+    <link rel="stylesheet" href="../../static/layui/css/layui.css">
+</head>
+<body>
+<div style="padding: 20px 40px;">
+    <textarea id="comment" style="display: none;"></textarea><br>
+</div>
+<input type="hidden" id="contentId" value="{{ content.contentId }}">
+
+<div style="width: 80% ;margin: 0 auto">
+    <button id="save" class="layui-btn layui-btn-primary">保存</button>
+</div>
+
+<script src="../../static/layui/layui.js"></script>
+<script src="../../static/user/addComment.js"></script>
+</body>
+</html>
