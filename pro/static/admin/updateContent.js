@@ -9,7 +9,7 @@ $(function() {
             path : "../../static/editormd/lib/",
             toolbarIcons: function(){
                 return ["undo","redo","|","bold","del","italic","quote","ucwords","uppercase","lowercase","h1","h2","h3","h4","h5","h6",
-                    "list-ul","list-ol","table","hr","link","emoji","image","save"]
+                    "list-ul","list-ol","table","hr","link","emoji","image","save","||", "watch", "fullscreen", "preview"]
             },
             toolbarIconTexts : {
                 save : "保存"  // 如果没有图标，则可以这样直接插入内容，可以是字符串或HTML标签
